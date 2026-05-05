@@ -134,7 +134,7 @@ export default function BookingsPage() {
                     return (
                       <div
                         key={booking.id}
-                        className="bg-blue-100 border border-blue-400 rounded-lg p-3"
+                        className="bg-blue-100 border border-blue-400 rounded-lg p-3 text-center"
                       >
                         <p className="text-gray-900 font-semibold whitespace-nowrap">
                           {booking.time.replace("\n", " ").trim()}
@@ -149,16 +149,16 @@ export default function BookingsPage() {
                         </p>
 
                         <div className="mt-3 flex justify-center">
-  <span
-    className={`text-xs px-2 py-1 rounded-full font-semibold ${
-      isPaid
-        ? "bg-green-200 text-green-800"
-        : "bg-yellow-200 text-yellow-800"
-    }`}
-  >
-    {isPaid ? "Paid" : "Payment Pending"}
-  </span>
-</div>
+                          <span
+                            className={`inline-flex items-center justify-center text-center text-xs px-3 py-1 rounded-full font-semibold ${
+                              isPaid
+                                ? "bg-green-200 text-green-800"
+                                : "bg-yellow-200 text-yellow-800"
+                            }`}
+                          >
+                            {isPaid ? "Paid" : "Payment Pending"}
+                          </span>
+                        </div>
 
                         {!isPaid && (
                           <button
