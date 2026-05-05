@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -47,7 +47,7 @@ function generateTimeSlots(rule: AvailabilityRule) {
   return slots;
 }
 
-export default function TimePage() {
+function TimeContent() {
   const searchParams = useSearchParams();
 
   const selectedDate = searchParams.get("date");
@@ -170,5 +170,12 @@ export default function TimePage() {
         </div>
       </div>
     </main>
+  );
+}
+export default function TimePage() {
+  return (
+    <Suspense fallback={<div>Loading times...</div>}>
+      <TimeContent />
+    </Suspense>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabaseClient";
 
@@ -11,7 +11,7 @@ type Resource = {
   type: string;
 };
 
-export default function ResourcePage() {
+function ResourceContent() {
   const searchParams = useSearchParams();
   const lesson = searchParams.get("lesson") || "Golf Lesson";
 
@@ -57,5 +57,12 @@ export default function ResourcePage() {
         </div>
       </div>
     </main>
+  );
+}
+export default function ResourcePage() {
+  return (
+    <Suspense fallback={<div>Loading resources...</div>}>
+      <ResourceContent />
+    </Suspense>
   );
 }
