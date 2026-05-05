@@ -156,7 +156,7 @@ export default function BookingsPage() {
         : "bg-yellow-200 text-yellow-800"
     }`}
   >
-    {paymentStatus.charAt(0).toUpperCase() + paymentStatus.slice(1)}
+    {isPaid ? "Paid" : "Payment Pending"}
   </span>
 </div>
 
