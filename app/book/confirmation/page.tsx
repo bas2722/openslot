@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
+import { Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-export default function ConfirmationPage() {
+function ConfirmationContent() {
   const searchParams = useSearchParams();
 
   const name = searchParams.get("name");
@@ -11,7 +12,6 @@ export default function ConfirmationPage() {
   const time = searchParams.get("time");
   const lesson = searchParams.get("lesson") || "Golf Lesson";
   const resource = searchParams.get("resource_name") || "Selected Resource";
-  const paymentStatus = searchParams.get("payment_status") || "Pending";
 
   return (
     <main className="min-h-screen bg-gray-200 p-6">
@@ -30,7 +30,6 @@ export default function ConfirmationPage() {
           <p className="text-gray-700">Date: {date}</p>
           <p className="text-gray-700">Time: {time}</p>
           <p className="text-gray-700">Status: Confirmed</p>
-          <p className="text-gray-700">Payment: {paymentStatus}</p>
         </div>
 
         <Link href="/" className="block">
@@ -40,5 +39,13 @@ export default function ConfirmationPage() {
         </Link>
       </div>
     </main>
+  );
+}
+
+export default function ConfirmationPage() {
+  return (
+    <Suspense fallback={<div>Loading confirmation...</div>}>
+      <ConfirmationContent />
+    </Suspense>
   );
 }
