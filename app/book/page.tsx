@@ -8,8 +8,10 @@ function BookContent() {
   const searchParams = useSearchParams();
 
   const lesson = searchParams.get("lesson") || "Golf Lesson";
+  const resourceId = searchParams.get("resource_id") || "";
+  const resourceName =
+    searchParams.get("resource_name") || "Selected Resource";
 
-  // example dates (keep your logic if you already had one)
   const dates = Array.from({ length: 7 }).map((_, i) => {
     const date = new Date();
     date.setDate(date.getDate() + i);
@@ -41,10 +43,12 @@ function BookContent() {
               key={date.value}
               href={`/book/time?date=${date.value}&lesson=${encodeURIComponent(
                 lesson
+              )}&resource_id=${resourceId}&resource_name=${encodeURIComponent(
+                resourceName
               )}`}
               className="block"
             >
-              <div className="border-2 border-gray-500 rounded-xl p-4 text-center hover:bg-gray-100 transition cursor-pointer">
+              <div className="border-2 border-gray-500 rounded-xl p-4 text-center text-gray-900 font-semibold hover:bg-gray-100 transition cursor-pointer">
                 {date.label}
               </div>
             </Link>
